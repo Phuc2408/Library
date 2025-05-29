@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: "Montserrat", Helvetica, sans-serif;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library - Borrowed Books</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="./history.js" defer></script>
+</head>
+
+<body class="bg-cyan-100">
+
+    <!-- Header -->
+    <header class="bg-white p-4 flex justify-between items-center">
+        <div class="flex items-center">
+            <img src="/assets/image/logo.png" alt="BookHub Logo" class="h-8 w-auto mr-2">
+            <h1 class="text-black text-xl font-bold">Library</h1>
+        </div>
+        <div class="relative">
+            <input id="search" type="text" placeholder="Search borrowed books..."
+                   class="py-2 px-4 pr-10 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-300 border border-gray-300">
+            <button class="absolute right-3 top-2 text-gray-600"><i class="fas fa-search"></i></button>
+            <div id="suggestions" class="hidden absolute top-full mt-1 bg-white w-full shadow-md rounded">
+                <!-- Search suggestions will appear here -->
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Layout -->
+    <div class="flex">
+        <!-- Sidebar -->
+        <aside class="bg-slate-400 text-slate-950 w-64 min-h-screen p-4">
+            <nav>
+                <ul>
+                    <li class="mb-4">
+                        <a href="/statics/homepage/index.html"
+                           class="flex items-center hover:bg-gray-500 p-2 rounded transition-colors duration-200">
+                            <i class="fas fa-book"></i><span class="ml-2">Catalog</span>
+                        </a>
+                    </li>
+                    <li class="mb-4">
+                        <a href="/statics/account/index.html"
+                           class="flex items-center hover:bg-gray-500 p-2 rounded transition-colors duration-200">
+                            <i class="fas fa-user"></i><span class="ml-2">Account</span>
+                        </a>
+                    </li>
+                    <li class="mb-4">
+                        <a href="/statics/history/index.html"
+                           class="flex items-center hover:bg-gray-500 p-2 rounded transition-colors duration-200">
+                            <i class="fas fa-history"></i><span class="ml-2">History</span>
+                        </a>
+                    </li>
+                    <li onclick="logOut()">
+                        <a href="/statics/signin/index.html"
+                           class="flex items-center hover:bg-gray-500 p-2 rounded transition-colors duration-200">
+                            <i class="fas fa-sign-out-alt"></i><span class="ml-2">Log Out</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 p-8">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-3xl font-bold">Borrowed Books</h2>
+            </div>
+            <section id="borrowedBooks" class="space-y-4">
+                <!-- Borrowed books will be dynamically rendered here -->
+            </section>
+        </main>
+    </div>
+
+    <!-- Extend Popup -->
+    <div id="extendPopup" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center">
+        <div class="bg-white p-8 rounded-lg max-w-md w-full">
+            <h2 class="text-2xl font-bold mb-4">Extend Return Date</h2>
+            <div class="mb-4">
+                <label class="block text-gray-700 mb-2">New Return Date</label>
+                <input id="newReturnDate" type="date" class="w-full p-2 border rounded">
+            </div>
+            <div class="flex justify-end space-x-4">
+                <button class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400" onclick="closeExtendPopup()">Cancel</button>
+                <button id="confirmExtend"
+                        class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+                    Confirm
+                </button>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Lost Popup -->
+    <div id="lostPopup" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center">
+        <div class="bg-white p-8 rounded-lg max-w-md w-full">
+            <h2 class="text-2xl font-bold text-red-600 mb-4">Mark Book as Lost</h2>
+            <p class="mb-4">Are you sure you want to mark this book as lost? You may be charged a fine.</p>
+            <div class="flex justify-end space-x-4">
+                <button class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400"
+                        onclick="closeLostPopup()">
+                    Cancel
+                </button>
+                <button class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+    onclick="markLost()">
+    Lost
+</button>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

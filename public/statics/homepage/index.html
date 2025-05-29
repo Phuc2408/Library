@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: "Montserrat", Helvetica, sans-serif;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library - Homepage</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="./homepage.js" defer></script>
+</head>
+
+<body class="bg-cyan-100">
+
+    <!-- Header -->
+    <header class="bg-white p-4 flex justify-between items-center">
+        <div class="flex items-center">
+            <img src="/assets/image/logo.png" alt="BookHub Logo" class="h-8 w-auto mr-2">
+            <h1 class="text-black text-xl font-bold">Library</h1>
+        </div>
+        <div class="relative">
+            <input id="search" type="text" placeholder="Search books..."
+                class="py-2 px-4 pr-10 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-300 border border-gray-300">
+            <button class="absolute right-3 top-2 text-gray-600"><i class="fas fa-search"></i></button>
+            <div id="suggestions" class="hidden absolute top-full mt-1 bg-white w-full shadow-md rounded">
+                <!-- Search suggestions will appear here -->
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Layout -->
+    <div class="flex">
+        <!-- Sidebar -->
+        <aside class="bg-slate-400 text-slate-950 w-64 min-h-screen p-4">
+            <nav>
+                <ul>
+                    <li class="mb-4">
+                        <a href="/statics/homepage/index.html"
+                            class="flex items-center hover:bg-gray-500 p-2 rounded transition-colors duration-200">
+                            <i class="fas fa-book"></i><span class="ml-2">Catalog</span>
+                        </a>
+                    </li>
+                    <li class="mb-4">
+                        <a href="/statics/account/index.html"
+                            class="flex items-center hover:bg-gray-500 p-2 rounded transition-colors duration-200">
+                            <i class="fas fa-user"></i><span class="ml-2">Account</span>
+                        </a>
+                    </li>
+                    <li class="mb-4">
+                        <a href="/statics/history/index.html"
+                            class="flex items-center hover:bg-gray-500 p-2 rounded transition-colors duration-200">
+                            <i class="fas fa-history"></i><span class="ml-2">History</span>
+                        </a>
+                    </li>
+                    <li onclick="logOut()">
+                        <a href="/statics/signin/index.html"
+                            class="flex items-center hover:bg-gray-500 p-2 rounded transition-colors duration-200">
+                            <i class="fas fa-sign-out-alt"></i><span class="ml-2">Log Out</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 p-8">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-3xl font-bold">Featured Books</h2>
+                <div>
+                    <label for="genreFilter" class="block text-gray-700 mb-2 text-sm">Filter by Genre:</label>
+                    <select id="genreFilter" class="p-2 border rounded">
+                        <option value="">All Genres</option>
+                        <option value="Fiction">Fiction</option>
+                        <option value="Romantic">Romantic</option>
+                        <option value="Adventure">Adventure</option>
+                        <option value="History">History</option>
+                        <option value="Fantasy">Fantasy</option>
+                        <option value="Science Fiction">Science Fiction</option>
+                        <option value="Mystery">Mystery</option>
+                    </select>
+                </div>
+            </div>
+            <div id="book-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <!-- Book items will be dynamically added here -->
+            </div>
+        </main>
+    </div>
+
+    <!-- Book Details Modal -->
+    <div id="bookDetailsModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center">
+        <div class="bg-white p-8 rounded-lg max-w-2xl w-full mx-4">
+            <div id="bookDetails" class="space-y-4">
+                <!-- Book details will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Borrow Modal -->
+    <div id="borrowModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center">
+        <div class="bg-white p-8 rounded-lg max-w-lg w-full mx-4">
+            <h2 class="text-2xl font-bold mb-4">Borrow Book</h2>
+            <form id="borrowForm" class="space-y-4">
+                <div>
+                    <label class="block text-gray-700 mb-2">Pickup Date</label>
+                    <input type="date" id="pickupDate" class="w-full p-2 border rounded" required>
+                </div>
+                <div>
+                    <label class="block text-gray-700 mb-2">Return Date (30 days from pickup)</label>
+                    <input type="date" id="returnDate" class="w-full p-2 border rounded bg-gray-100" readonly>
+                </div>
+                <div class="flex justify-end space-x-4">
+                    <button type="button" onclick="closeBorrowModal()"
+                        class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400">
+                        Cancel
+                    </button>
+                    <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+                        Confirm
+                        Borrow
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</body>
+
+</html>

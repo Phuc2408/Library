@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html lang="en" class="h-full">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Book Returns</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="./returns.js" defer></script>
+</head>
+
+<body class="bg-gray-100 h-full">
+    <!-- Header -->
+    <header class="bg-white shadow p-4 flex justify-between items-center">
+        <h1 class="text-2xl font-bold">Manage Book Returns</h1>
+        <button id="logoutBtn" class="bg-red-500 text-white px-4 py-2 rounded">Log Out</button>
+    </header>
+
+    <div class="flex h-full">
+        <!-- Sidebar -->
+        <aside class="w-64 bg-gray-800 text-white p-4">
+            <nav>
+                <ul>
+                    <li><a href="/statics/admin/index.html" class="block py-2 hover:bg-gray-700 rounded">Manage
+                            Books</a></li>
+                    <li><a href="/statics/manageAccount/index.html" class="block py-2 hover:bg-gray-700 rounded">Manage
+                            Users</a></li>
+                    <li><a href="/statics/pickups/pickups.html" class="block py-2 hover:bg-gray-700 rounded">Manage
+                            Pickups</a></li>
+                    <li><a href="/statics/returns/returns.html" class="block py-2 bg-gray-700 rounded">Manage
+                            Returns</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 p-8">
+            <section id="manageReturns" class="mb-8">
+                <h2 class="text-xl font-bold mb-4">Book Return Management</h2>
+
+                <!-- Bộ lọc ngày -->
+                <div class="flex items-center space-x-4 mb-4">
+                    <div>
+                        <label for="filterStartDate" class="block text-gray-700 mb-2 text-sm">Start Date:</label>
+                        <input type="date" id="filterStartDate" class="p-2 border rounded">
+                    </div>
+                    <div>
+                        <label for="filterEndDate" class="block text-gray-700 mb-2 text-sm">End Date:</label>
+                        <input type="date" id="filterEndDate" class="p-2 border rounded">
+                    </div>
+                    <button onclick="filterByDate()" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+                        Apply Filter
+                    </button>
+                    <button onclick="resetFilter()" class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400">
+                        Reset
+                    </button>
+                </div>
+
+                <!-- Bảng quản lý sách trả -->
+                <table class="table-auto w-full bg-white shadow-md rounded-lg">
+                    <thead>
+                        <tr class="bg-gray-200">
+                            <th class="p-4 border">Book Title</th>
+                            <th class="p-4 border">Username</th>
+                            <th class="p-4 border">Return Date</th>
+                            <th class="p-4 border">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="returnList">
+                        <!-- Rows will be dynamically added -->
+                    </tbody>
+                </table>
+            </section>
+
+        </main>
+    </div>
+</body>
+
+<style>
+    .btn-success {
+        background-color: #4CAF50;
+        color: white;
+        padding: 8px 16px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-success:hover {
+        background-color: #45a049;
+    }
+</style>
+
+</html>

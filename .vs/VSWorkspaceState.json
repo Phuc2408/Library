@@ -1,0 +1,15 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\api",
+    "\\middleware",
+    "\\public",
+    "\\public\\assets",
+    "\\public\\assets\\css",
+    "\\public\\statics",
+    "\\public\\statics\\homepage",
+    "\\services"
+  ],
+  "SelectedNode": "\\public\\statics\\homepage\\homepage.js",
+  "PreviewInSolutionExplorer": false
+}
